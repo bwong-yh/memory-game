@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+// google font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Unna:wght@400;700&display=swap');
+
+body {
+  background-color: #b8e8fc;
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Unna', serif;
+  text-align: center;
+}
