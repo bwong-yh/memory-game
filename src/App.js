@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import './App.scss';
 
-const cards = [
+const cardImgs = [
   { src: '/img/helmet-1.png' },
   { src: '/img/potion-1.png' },
   { src: '/img/ring-1.png' },
@@ -10,16 +11,23 @@ const cards = [
 ];
 
 function App() {
+  const [cards, setCards] = useState([]);
+  const [turns, setTurns] = useState(0);
+
   const createDeck = () => {
     // duplicate cards
-    const newDeck = [...cards, ...cards]
+    const newDeck = [...cardImgs, ...cardImgs]
       // randomize cards
       .sort(() => Math.random() - 0.5)
       // assign id to each card
-      .map(card => ({ ...card, id: Math.random() * 100 }));
+      .map(card => ({ ...card, id: Math.random() }));
 
-    console.log(newDeck);
+    // reset game everytime New Game button is clicked
+    setCards(newDeck);
+    setTurns(0);
   };
+
+  console.log('cards: ', cards, 'turns: ', turns);
 
   return (
     <div className='App'>
