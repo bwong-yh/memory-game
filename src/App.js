@@ -33,6 +33,17 @@ function App() {
     <div className='App'>
       <h1>Memory Game</h1>
       <button onClick={createDeck}>New Game</button>
+
+      <div className='card-grid'>
+        {cards.map(card => (
+          <div key={card.id} className='card'>
+            <div>
+              <img src={card.src} alt='card front' className='card-front' />
+              <img src='/img/cover.png' alt='cover' className='card-back' />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
