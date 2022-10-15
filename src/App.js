@@ -14,6 +14,8 @@ const cardImgs = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choice1, setChoice1] = useState(null);
+  const [choice2, setChoice2] = useState(null);
 
   const createDeck = () => {
     // duplicate cards
@@ -28,7 +30,10 @@ function App() {
     setTurns(0);
   };
 
-  console.log('cards: ', cards, 'turns: ', turns);
+  // handle choice
+  const handleChoice = card => {
+    choice1 ? setChoice2(card) : setChoice1(card);
+  };
 
   return (
     <div className='App'>
@@ -37,7 +42,11 @@ function App() {
 
       <div className='card-grid'>
         {cards.map(card => (
-          <Card key={card.id} card={card} />
+          <Card
+            key={card.id}
+            card={card}
+            handleChoice={() => handleChoice(card)}
+          />
         ))}
       </div>
     </div>
