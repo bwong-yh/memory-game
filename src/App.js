@@ -26,7 +26,9 @@ function App() {
       // assign id to each card
       .map(card => ({ ...card, id: Math.random() }));
 
-    // reset game everytime New Game button is clicked
+    // reset game every time New Game button is clicked
+    setChoice1(null);
+    setChoice2(null);
     setCards(newDeck);
     setTurns(0);
   };
@@ -74,10 +76,16 @@ function App() {
     choice1 ? setChoice2(card) : setChoice1(card);
   };
 
+  // start game automatically
+  useEffect(() => {
+    createDeck();
+  }, []);
+
   return (
     <div className='App'>
       <h1>Memory Game</h1>
       <button onClick={createDeck}>New Game</button>
+      <p>Turns: {turns}</p>
 
       <div className='card-grid'>
         {cards.map(card => (
