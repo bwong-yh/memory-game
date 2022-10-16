@@ -16,6 +16,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
+  const [disable, setDisable] = useState(false);
 
   const createDeck = () => {
     // duplicate cards
@@ -35,6 +36,7 @@ function App() {
     setChoice1(null);
     setChoice2(null);
     setTurns(prev => prev + 1);
+    setDisable(false);
   };
 
   // compare cards; use useEffect
@@ -59,7 +61,11 @@ function App() {
     };
 
     // ensure both choices are existed
-    if (choice1 && choice2) compareChoices();
+    if (choice1 && choice2) {
+      // setDisable true to prevent users clicking more than 2 cards
+      setDisable(true);
+      compareChoices();
+    }
   }, [choice1, choice2]);
 
   // handle choice
@@ -80,6 +86,7 @@ function App() {
             card={card}
             handleChoice={() => handleChoice(card)}
             flipped={card === choice1 || card === choice2 || card.matched}
+            disable={disable}
           />
         ))}
       </div>

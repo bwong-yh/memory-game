@@ -1,8 +1,10 @@
 import './Card.scss';
 
-const Card = ({ card, handleChoice, flipped }) => {
+const Card = ({ card, handleChoice, flipped, disable }) => {
   const handleClick = () => {
-    handleChoice();
+    if (!disable) {
+      handleChoice();
+    }
   };
 
   return (
