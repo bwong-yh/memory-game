@@ -3,12 +3,12 @@ import './App.scss';
 import Card from './components/Card';
 
 const cardImgs = [
-  { src: '/img/helmet-1.png' },
-  { src: '/img/potion-1.png' },
-  { src: '/img/ring-1.png' },
-  { src: '/img/scroll-1.png' },
-  { src: '/img/shield-1.png' },
-  { src: '/img/sword-1.png' },
+  { src: '/img/helmet-1.png', matched: false },
+  { src: '/img/potion-1.png', matched: false },
+  { src: '/img/ring-1.png', matched: false },
+  { src: '/img/scroll-1.png', matched: false },
+  { src: '/img/shield-1.png', matched: false },
+  { src: '/img/sword-1.png', matched: false },
 ];
 
 function App() {
@@ -37,12 +37,22 @@ function App() {
     setTurns(prev => prev + 1);
   };
 
+  console.log(cards);
+
   // compare cards; use useEffect
   useEffect(() => {
     const compareChoices = () => {
-      choice1.src === choice2.src
-        ? console.log('match')
-        : console.log('unmatch');
+      if (choice1.src === choice2.src) {
+        setCards(prev => {
+          return prev.map(card => {
+            if (card.src === choice1.src || card.src === choice2.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+      }
 
       resetTurn();
     };
