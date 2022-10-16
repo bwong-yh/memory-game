@@ -37,8 +37,6 @@ function App() {
     setTurns(prev => prev + 1);
   };
 
-  console.log(cards);
-
   // compare cards; use useEffect
   useEffect(() => {
     const compareChoices = () => {
@@ -54,7 +52,10 @@ function App() {
         });
       }
 
-      resetTurn();
+      // setTimeout to let users remember the card for 1 sec
+      setTimeout(() => {
+        resetTurn();
+      }, 1000);
     };
 
     // ensure both choices are existed
@@ -78,6 +79,7 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={() => handleChoice(card)}
+            flipped={card === choice1 || card === choice2 || card.matched}
           />
         ))}
       </div>
